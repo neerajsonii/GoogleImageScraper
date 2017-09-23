@@ -12,7 +12,7 @@ db.once('open', function() {
 });
 var image_table = mongoose.Schema({
     keyword: String,
-    image_url: String,
+    image_url: Array,
     new_url: String,
 });
 var image_table = mongoose.model('image_table', image_table);
