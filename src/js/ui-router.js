@@ -125,6 +125,7 @@ app.controller('keywordsCtrl', ['$scope', '$rootScope', 'callApi', '$state','$lo
         $scope.promise = callApi.getDataGet('getKeywords'); // URL for API
         $scope.promise.then(function(Data) {
             $scope.keywordList = Data.data;
+            $scope.keyword_count = Data.count;
         }, function(err) {
 
         });
