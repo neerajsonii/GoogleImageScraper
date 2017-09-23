@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<style>
+footer {
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+}
+</style>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=320">
+    <base href="/">
+    <title>Image Scrapler</title>
+    <link rel="shortcut icon" href="../src/images/googleImage.png" type="image/png">
+    <script type="text/javascript" src="../node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src='https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="../src/js/ui-router.js"></script>
+    <script type="text/javascript" src="../src/js/toaster.js"></script>
+    <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../src/styles/app.css">
+    <link rel="stylesheet" type="text/css" href="../src/styles/toaster.css">
+</head>
+
+<body data-ng-app="myApp">
+    <!-- <div ng-include="'../src/html/header.html'" class="app-header navbar"></div> -->
+    <div class=" container-fluid col-sm-12 col-md-12">
+        <main ui-view></main>
+    </div>
+</body>
+
+</html>

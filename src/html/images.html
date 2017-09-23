@@ -1,0 +1,19 @@
+<div class="jumbotron" style="z-index: 1">
+    <div class="col-12 text-center">
+        <h1 class="heading1">Google Image scrapler</h1>
+    </div>
+    <h2 class="text-center heading1">
+            Images for the keyword : {{data.keyword}}</h2>
+</div>
+<div class="container-fluid" style="margin-top: 2%;padding-bottom: 2%">
+    <div class="col-md-3 col-sm-6 col-xs-12" ng-repeat="a in [1,2,3,4,5,6,7,8,9,10,11,12,1111,2122,21213,122124,121215,621212,21217,821212,9122,121210,11111,11112]">
+        <img class="image" src="../../src/images/bg1.jpg" width="100%">
+        <p class="heading2">{{$index}}</p>
+    </div>
+</div>
+<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 form-group">
+    <hr class="divider"></hr>
+</div>
+<div class="text-center col-md-12" >
+    <button class="btn btn-success" ui-sref="/"> Go home</button>
+</div>
