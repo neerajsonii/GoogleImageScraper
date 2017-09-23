@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ui.router','ngStorage', function() {}]).
+var app = angular.module('myApp', ['ui.router', 'ngStorage', function() {}]).
 config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
     function($stateProvider, $urlRouterProvider, $locationProvider) {
 
@@ -50,7 +50,7 @@ app.provider('callApi', function() {
 
             var callApiObj = {};
 
-            callApiObj.getDataPost = function(api,keyword) {
+            callApiObj.getDataPost = function(api, keyword) {
                 $http
                     .post(
                         baseUrl + api, {
@@ -58,19 +58,22 @@ app.provider('callApi', function() {
                         })
                     .then(
                         function(response) {
-
-                            if (response.data[0] != null && response.data[0].success) {
-
+                            //debugger;
+                            if (response.status == 200 && response.data.success) {
+                                //return response.data;
+                                q.resolve(response.data);
 
                             } else {
-
+                                q.reject('error');
                             }
                         },
                         function(x) {
                             if (x.status == 500) {
 
                             }
+
                         });
+                return q.promise
 
             };
             callApiObj.getDataGet = function(api) {
@@ -112,17 +115,17 @@ app.controller('searchCtrl', ['$scope', '$rootScope', 'callApi', '$state',
         };
         $scope.save = function() {
 
-            callApi.getDataPost('getImages',$scope.keyword);
+            callApi.getDataPost('saveImages', $scope.keyword);
 
         };
 
     }
 ]);
-app.controller('keywordsCtrl', ['$scope', '$rootScope', 'callApi', '$state','$localStorage',
-    function($scope, $rootScope,callApi, $state,$localStorage) {
+app.controller('keywordsCtrl', ['$scope', '$rootScope', 'callApi', '$state', '$localStorage',
+    function($scope, $rootScope, callApi, $state, $localStorage) {
 
         $scope.keywordList = [];
-        $scope.promise = callApi.getDataGet('getKeywords'); // URL for API
+        $scope.promise = callApi.getDataGet('getKeywords'); // URL for GET API
         $scope.promise.then(function(Data) {
             $scope.keywordList = Data.data;
             $scope.keyword_count = Data.count;
@@ -138,13 +141,23 @@ app.controller('keywordsCtrl', ['$scope', '$rootScope', 'callApi', '$state','$lo
     }
 
 ]);
-app.controller('imagesCtrl', ['$scope', '$rootScope', 'callApi', '$state','$localStorage',
-    function($scope, $rootScope, callApi, $state,$localStorage) {
-          
-        if($localStorage.KEY == null){
-            $state.go('app.keywords');  
+app.controller('imagesCtrl', ['$scope', '$rootScope', 'callApi', '$state', '$localStorage',
+    function($scope, $rootScope, callApi, $state, $localStorage) {
+
+        if ($localStorage.KEY == null) {
+            $state.go('app.keywords');
         }
         $scope.data = $localStorage.KEY;
+
+
+        $scope.promise = callApi.getDataPost('getImages', $localStorage.KEY.keyword); // URL for POST API
+        $scope.promise.then(function(Data) {
+            
+            $scope.image_data = Data.data[0].image_url;
+            debugger;
+        }, function(err) {
+
+        });
     }
 
 ]);

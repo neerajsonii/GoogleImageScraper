@@ -34,6 +34,7 @@ app.use('/api', routes);
 //console.log(routes(app));
 app.use('/node_modules', express.static('node_modules'));
 app.use('/src', express.static('src'));
+app.use('/data_images', express.static('data_images'));
 
 app.listen(process.env.port || PORT, function() {
     console.log(`Server is running at port - ${PORT}`);
