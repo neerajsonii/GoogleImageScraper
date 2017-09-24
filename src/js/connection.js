@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 // connect to mongo db
 //mongoose.connect('mongodb://localhost/darwin');
-mongoose.connect('mongodb://admin:admin123@ds147864.mlab.com:47864/darwin_task');
+//mongoose.connect('mongodb://localhost/darwin' || process.env.MONGODB_URI);
 
 mongoose.Promise = global.Promise;
 
