@@ -7,11 +7,11 @@ div.jumbotron {
 	padding :0px 0px !important;
 }
 
-html,
-body {
-    max-width: 100%;
-    overflow-x: hidden;
-}
+html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+        height: 120vh;
+    }
 
 nav {
     margin-bottom: 0 !important;
@@ -28,7 +28,7 @@ nav {
     top: 0;
     left: 0;
     margin:10px 30px;
-    color:#DC143C
+    color:#DC143C;
 }
 
 .bg {
@@ -42,7 +42,7 @@ nav {
 
 .jumbotron {
     margin-top: -2%;
-    padding-top: 55px;
+    padding-top: 90px;
 }
 img {
 	margin-bottom: 30px;
@@ -51,11 +51,34 @@ img {
 .keywords {
 display: inline-block;
 text-decoration: underline;
+letter-spacing: 0.1em;
 }
-.keywords:hover {
+.keywords:hover{
+    cursor: pointer;
+}
+.keyword-box{
+    text-align: center;
+    
+}
+.keyword-box:hover {
  font-weight: bold;   
- cursor: pointer;
- color:#DC143C
+ color:#DC143C;
+ border: 1px solid #8585ad;
+}
+.times{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left:90%;
+    margin-top: -2%
+}
+.times:hover{
+ cursor: pointer;   
+}
+.alert-dismissable {
+   position: absolute;
+    top: 0; 
+    width: 100%;
 }
 /*.back-button{
     position: absolute;

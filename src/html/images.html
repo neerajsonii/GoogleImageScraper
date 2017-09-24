@@ -3,11 +3,11 @@
         <h1 class="heading1">Google Image scrapler</h1>
     </div>
     <h2 class="text-center heading1">
-            Images for the keyword : {{data.keyword}}</h2>
+            Images for the keyword : {{data}}</h2>
 </div>
 <div class="container-fluid" style="margin-top: 2%;padding-bottom: 2%">
     <div class="col-md-3 col-sm-6 col-xs-12" ng-repeat="item in image_data track by $index">
-        <img class="image" src="../../{{item}}" width="100%" height="200px">
+        <img class="image" src="../../data_images/{{item}}" width="100%" height="200px">
         <p class="heading2">{{$index+1}}</p>
     </div>
 </div>
@@ -16,4 +16,5 @@
 </div>
 <div class="text-center col-md-12" >
     <button class="btn btn-success" ui-sref="/"> Go home</button>
+    <button class="btn btn-default" ui-sref="keywords"> Go to Keywords</button>
 </div>
