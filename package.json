@@ -4,7 +4,7 @@
   "description": "Its a Task assigned by Darwin labs, Gurgaon",
   "main": "server.js",
   "scripts": {
-    "start": "node server",
+    "start": "nodemon server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Neeraj Sonii",
