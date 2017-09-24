@@ -12,13 +12,9 @@ config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
                  url: '/Task',
                  templateUrl: '../../src/index.html'
              })*/
-            .state('/', {
-                url: '/',
-                templateUrl: '../../src/html/search.html',
-                controller: 'searchCtrl',
-            })
+            
             .state('home', {
-                url: '/home',
+                url: '/',
                 templateUrl: '../../src/html/search.html',
                 controller: 'searchCtrl',
             })
