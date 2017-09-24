@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 
 // connect to mongo db
-mongoose.connect('mongodb://localhost/darwin');
+//mongoose.connect('mongodb://localhost/darwin');
+mongoose.connect('mongodb://admin:admin123@ds147864.mlab.com:47864/darwin_task');
 
 mongoose.Promise = global.Promise;
 
