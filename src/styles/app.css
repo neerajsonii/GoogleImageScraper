@@ -4,14 +4,15 @@ div.jumbotron {
 }
 
 .container-fluid {
-	padding :0px 0px !important;
+    padding: 0px 0px !important;
 }
 
-html, body {
-        max-width: 100%;
-        overflow-x: hidden;
-        height: 120vh;
-    }
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+    height: 120vh;
+}
 
 nav {
     margin-bottom: 0 !important;
@@ -27,13 +28,8 @@ nav {
     position: absolute;
     top: 0;
     left: 0;
-    margin:10px 30px;
-    color:#DC143C;
-}
-
-.bg {
-    height: 100vh;
-    padding: 0px
+    margin: 10px 30px;
+    color: #DC143C;
 }
 
 .input-div {
@@ -44,42 +40,50 @@ nav {
     margin-top: -2%;
     padding-top: 90px;
 }
+
 img {
-	margin-bottom: 30px;
-	width: 100%;
+    margin-bottom: 30px;
+    width: 100%;
 }
+
 .keywords {
-display: inline-block;
-text-decoration: underline;
-letter-spacing: 0.1em;
+    display: inline-block;
+    text-decoration: underline;
+    letter-spacing: 0.1em;
 }
-.keywords:hover{
+
+.keywords:hover {
     cursor: pointer;
 }
-.keyword-box{
+
+.keyword-box {
     text-align: center;
-    
 }
+
 .keyword-box:hover {
- font-weight: bold;   
- color:#DC143C;
- border: 1px solid #8585ad;
+    color: #DC143C;
+    border: 1px solid #8585ad;
 }
-.times{
+
+.times {
     position: absolute;
     top: 0;
     left: 0;
-    margin-left:90%;
+    margin-left: 90%;
     margin-top: -2%
 }
-.times:hover{
- cursor: pointer;   
+
+.times:hover {
+    cursor: pointer;
 }
+
 .alert-dismissable {
-   position: absolute;
-    top: 0; 
+    position: absolute;
+    top: 0;
     width: 100%;
 }
+
+
 /*.back-button{
     position: absolute;
     top: 0;
@@ -87,12 +91,42 @@ letter-spacing: 0.1em;
     float: left;
 }
 */
-input[type = "text"]{
-    text-align: center;
+
+input[type="text"] {
+    //text-align: center;
     font-weight: lighter;
     font-size: 25px
 }
-.divider{
+
+.divider {
     margin-top: 2% !important;
     margin-bottom: 2% !important;
+}
+
+.btn-keyword {
+    height: 40px;
+    background-color: #3C575B;
+    color: white;
+    font-weight: lighter;
+    border: 1px solid #8585ad;
+    letter-spacing: 0.2em;
+}
+
+.btn-save,
+.btn-back {
+    height: 40px;
+    background-color: #8585ad;
+    color: white;
+    font-weight: lighter;
+    border: 1px solid #8585ad;
+    letter-spacing: 0.2em;
+}
+
+.img-div {
+    opacity: 0.5
+}
+
+.img-div:hover {
+    opacity: 1.0;
+    filter: alpha(opacity=100);
 }
