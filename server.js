@@ -3,9 +3,9 @@ var routes = require('./src/js/api.js'); // FOR API
 var bodyParser = require('body-parser');
 var path = require('path');
 var PORT = 3100;
-var cors = require('cors');
 
 app = express();
+
 var origins = ["http://localhost:3100", "http://localhost:3000"];
 
 app.get('/*', function(req, res, next) {
@@ -29,7 +29,7 @@ app.use(bodyParser.json());
 
 
 // initialise Apis
-app.use(cors());
+
 app.use('/api', routes);
 
 //console.log(routes(app));
