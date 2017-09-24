@@ -100,6 +100,7 @@ app.controller('keywordsCtrl', ['$scope', '$state', '$localStorage', '$http', '$
 
                         $scope.keywordList = response.data.data;
                         $scope.DATA = response.data;
+                        $scope.count = response.data.count;
                         //$scope.showAlert = true;
                         //$timeout($scope.closeAlert, 2000);
 
@@ -132,6 +133,7 @@ app.controller('keywordsCtrl', ['$scope', '$state', '$localStorage', '$http', '$
                     function(response) {
                         if (response.status == 200 && response.data.success) {
                             $scope.keywordList = response.data.data;
+                            $scope.count = response.data.count;
                             $scope.DATA = response.data;
                             $scope.showAlert = true;
                             $timeout($scope.closeAlert, 2000);

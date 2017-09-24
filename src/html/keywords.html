@@ -15,18 +15,19 @@
     <h2 class="text-center heading1">
             Your recent search keywords are here</h2>
 </div>
-<div class="container" style="margin-top: 2%;padding-bottom: 2%;min-height: 100px;">
+<div class="container" style="margin-top: 5%;padding-bottom: 2%;min-height: 100px;">
     <div class="form-group col-md-12 col-sm-4 col-xs-12 col-md-offset-4">
-        <input type="text" style="border: 1px solid #8585ad" class="col-md-4 col-xs-12" class="form-control" ng-model="keyword" placeholder="Search " autofocus required>
+        <input type="text" style="border: 1px solid #8585ad" class="col-md-4 col-xs-12" class="form-control" ng-model="keyword" placeholder="   Filter you keywords " autofocus required>
     </div>
     <div class="col-md-2 col-sm-6 col-xs-6 keyword-box" ng-repeat="key in keywordList | filter: keyword ">
         <h4 ng-click="showImages(key)" class=" heading1 keywords text-primary">{{key.keyword}}</h4>
         <p class="text-danger times heading2" ng-click="deleteKeyword(key)">&times</p>
     </div>
 </div>
+<h4 class="text-center text-danger heading1" style="margin-top: 3%">Total Results : {{count}}</h4>
 <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 form-group">
     <hr class="divider"></hr>
 </div>
 <div class="text-center col-md-12 back-button">
-    <button class="btn btn-success" ui-sref="home"> Go home</button>
+    <button class="btn-back" ui-sref="home"> Go home</button>
 </div>
