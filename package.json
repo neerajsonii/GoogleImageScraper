@@ -7,6 +7,12 @@
     "start": "nodemon server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "engines": {
+    "node": "6.9.5"
+  },
+  "engines": {
+    "npm": "3.10.10"
+  },
   "author": "Neeraj Sonii",
   "license": "ISC",
   "dependencies": {
