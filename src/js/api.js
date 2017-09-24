@@ -29,6 +29,7 @@ function imageEditing(file_url) {
 
 var download_file_wget = function(file_url, index, keyword, res, len) {
     var file_name = url.parse(file_url).pathname.split('/').pop();
+    console.log(file_name);
     wget({
             url: file_url,
             dest: DEST, // destination path or path with filenname, default is ./ 
@@ -38,12 +39,13 @@ var download_file_wget = function(file_url, index, keyword, res, len) {
                 console.log('--- error:');
                 console.log(error); // error encountered 
             } else {
-                
-                images_url_arr.push('data_images/' + file_name);
-                imageEditing(DEST+file_name);
+
+                images_url_arr.push(file_name);
+                console.log(images_url_arr);
+                //imageEditing(DEST+file_name);
 
                 if (store_data(keyword, images_url_arr, len))
-                    res.send({ "Message": "Saved...", "success": true });
+                    res.send({ "message": "Images Saved...", "success": true });
             }
         }
     );
@@ -54,12 +56,12 @@ var store_data = function(kw, images_arr, len) {
     if (images_arr.length === len && save_status < 1) {
 
         var data = new save_images({
-            "keyword": kw,
+            "keyword": kw.trim(),
             "image_url": images_arr,
             "new_url": "-"
         });
         data.save().then(function() {
-            console.log("Saved keyword : "+kw);
+            console.log("Saved keyword : " + kw.trim());
         });
 
         save_status++;
@@ -70,6 +72,7 @@ var store_data = function(kw, images_arr, len) {
 
 
 router.post('/saveImages', function(req, res) {
+    console.log('Saving...');
     if (!req.body) {
         return res.sendStatus(400);
     } else {
@@ -95,10 +98,10 @@ router.post('/saveImages', function(req, res) {
                     result.forEach(function(value, index) {
                         //imageEditing(value.url, index, req.body.keyword);
 
-                        if (save_status < 1) 
+                        if (save_status < 1)
                             download_file_wget(value.url, index, req.body.keyword, res, result.length);
                     });
-                    
+
                 }).catch(function(err) {
                     console.log('err', err);
                     res.send(err);
@@ -118,9 +121,29 @@ router.get('/getKeywords', function(req, res) {
 
 });
 router.post('/getImages', function(req, res) {
-    console.log(req.body.keyword);
-    var data = save_images.find({"keyword":req.body.keyword}, function(err, data) {
-            res.send({ "success": true, "message": "Images recieved", "data": data });
+    var data = save_images.find({ "keyword": req.body.keyword }, function(err, data) {
+        res.send({ "success": true, "message": "Images recieved", "data": data });
+    });
+});
+router.post('/deleteKeyword', function(req, res) {
+    save_images.findOneAndRemove({ "_id": req.body.id }).then(function() {
+            save_images.findOne({ "_id": req.body.id }).then(function(result) {
+                    if (result === null) {
+                        var data = save_images.find({}, function(err, data) {
+                            save_images.count({}, function(err, count) {
+                                res.send({ "success": true, "message": "Keyword deleted..", "data": data, "count": count });
+                            });
+
+                        });
+                    } else {
+
+                        var data = save_images.find({}, function(err, data) {
+                            save_images.count({}, function(err, count) {
+                                res.send({ "success": false, "message": "Keyword couln't be deleted..", "data": data, "count": count });
+                            });
+                        });
+                    }
+            });
         });
 });
 
