@@ -7,11 +7,11 @@ div.jumbotron {
 	padding :0px 0px !important;
 }
 
-html,
-body {
-    max-width: 100%;
-    overflow-x: hidden;
-}
+html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+        height: 120vh;
+    }
 
 nav {
     margin-bottom: 0 !important;
@@ -28,7 +28,7 @@ nav {
     top: 0;
     left: 0;
     margin:10px 30px;
-    color:#DC143C
+    color:#DC143C;
 }
 
 .bg {
@@ -58,7 +58,7 @@ letter-spacing: 0.1em;
 }
 .keyword-box{
     text-align: center;
-    margin-left: 10px;
+    
 }
 .keyword-box:hover {
  font-weight: bold;   

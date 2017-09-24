@@ -2,10 +2,12 @@ const express = require('express');
 const router = express.Router();
 const Scraper = require('images-scraper');
 const google = new Scraper.Google();
-const Jimp = require("jimp");
 const wget = require('node-wget');
 const path = require('path');
 const url = require('url');
+const Filter = require('node-image-filter');
+const fs = require('fs-extra');
+require('events').EventEmitter.prototype._maxListeners = 100;
 const save_images = require('../js/connection.js'); // for saving data
 
 
@@ -14,18 +16,19 @@ const DEST = __dirname + '/../../data_images/';
 var images_url_arr = [];
 var save_status = 0;
 
-function imageEditing(file_url) {
+function imageEditing() {
+    images_url_arr.forEach(function(value, index) {
+        var templateUrl = '';
+        templateUrl = `${__dirname}/../../data_images/${value}`;
+        console.log(templateUrl);
 
-    Jimp.read(file_url).then(function(image) {
-        image.resize(256, 256) // resize 
-            .quality(60) // set JPEG quality 
-            .greyscale() // set greyscale 
-    }).catch(function(err) {
-        console.error(err);
+        Filter.render(templateUrl, Filter.preset.grayscale, function(result) {
+
+            result.data.pipe(fs.createWriteStream(templateUrl)); // save local
+            console.log('save filtered image');
+        });
     });
 }
-
-
 
 var download_file_wget = function(file_url, index, keyword, res, len) {
     var file_name = url.parse(file_url).pathname.split('/').pop();
@@ -54,6 +57,8 @@ var download_file_wget = function(file_url, index, keyword, res, len) {
 var store_data = function(kw, images_arr, len) {
 
     if (images_arr.length === len && save_status < 1) {
+
+        imageEditing();
 
         var data = new save_images({
             "keyword": kw.trim(),
@@ -91,7 +96,8 @@ router.post('/saveImages', function(req, res) {
                     detail: true,
                     nightmare: {
                         show: false
-                    }
+                    },
+                    type:'jpg'
                 })
                 .then(function(result) {
 
@@ -127,24 +133,24 @@ router.post('/getImages', function(req, res) {
 });
 router.post('/deleteKeyword', function(req, res) {
     save_images.findOneAndRemove({ "_id": req.body.id }).then(function() {
-            save_images.findOne({ "_id": req.body.id }).then(function(result) {
-                    if (result === null) {
-                        var data = save_images.find({}, function(err, data) {
-                            save_images.count({}, function(err, count) {
-                                res.send({ "success": true, "message": "Keyword deleted..", "data": data, "count": count });
-                            });
+        save_images.findOne({ "_id": req.body.id }).then(function(result) {
+            if (result === null) {
+                var data = save_images.find({}, function(err, data) {
+                    save_images.count({}, function(err, count) {
+                        res.send({ "success": true, "message": "Keyword deleted..", "data": data, "count": count });
+                    });
 
-                        });
-                    } else {
+                });
+            } else {
 
-                        var data = save_images.find({}, function(err, data) {
-                            save_images.count({}, function(err, count) {
-                                res.send({ "success": false, "message": "Keyword couln't be deleted..", "data": data, "count": count });
-                            });
-                        });
-                    }
-            });
+                var data = save_images.find({}, function(err, data) {
+                    save_images.count({}, function(err, count) {
+                        res.send({ "success": false, "message": "Keyword couln't be deleted..", "data": data, "count": count });
+                    });
+                });
+            }
         });
+    });
 });
 
 

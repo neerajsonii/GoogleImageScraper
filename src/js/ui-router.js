@@ -138,7 +138,7 @@ app.controller('keywordsCtrl', ['$scope', '$state', '$localStorage', '$http', '$
                             $scope.keywordList = response.data.data;
                             $scope.DATA = response.data;
                             $scope.showAlert = true;
-                            $timeout($scope.closeAlert, 3000);
+                            $timeout($scope.closeAlert, 2000);
                         } else {
 
                         }
