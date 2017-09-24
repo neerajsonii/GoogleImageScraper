@@ -92,3 +92,7 @@ input[type = "text"]{
     font-weight: lighter;
     font-size: 25px
 }
+.divider{
+    margin-top: 2% !important;
+    margin-bottom: 2% !important;
+}
