@@ -10,7 +10,7 @@
 </div>
 <div class="jumbotron" style="z-index: 1">
     <div class="col-12 text-center">
-        <h1 class="heading1">Google Image scrapler</h1>
+        <h1 class="heading1">Google Image scraper</h1>
     </div>
     <h2 class="text-center heading1">
             Your recent search keywords are here</h2>
@@ -21,7 +21,8 @@
     </div>
     <div class="col-md-2 col-sm-6 col-xs-6 keyword-box" ng-repeat="key in keywordList | filter: keyword ">
         <h4 ng-click="showImages(key)" class=" heading1 keywords text-primary">{{key.keyword}}</h4>
-        <p class="text-danger times heading2" ng-click="deleteKeyword(key)">&times</p>
+        <p class="text-danger times heading2" data-toggle="tooltip" data-placement="top" title="Delete" 
+        ng-click="deleteKeyword(key)">&times</p>
     </div>
 </div>
 <h4 class="text-center text-danger heading1" style="margin-top: 3%">Total Results : {{count}}</h4>
