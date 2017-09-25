@@ -9,13 +9,12 @@ app = express();
 var origins = ["http://localhost:3100", "http://localhost:3000"];
 
 app.get('/*', function(req, res, next) {
-    //origins.forEach(function(val, key) {
-    res.header("Access-Control-Allow-Origin", "*");
-    //})
+    origins.forEach(function(val, key) {
+    res.header("Access-Control-Allow-Origin", val);
+    })
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.header('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.header('Access-Control-Allow-Credentials', true);
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-  With, Content-Type, Accept");
     next();
 
 });

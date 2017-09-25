@@ -183,3 +183,7 @@ window.setTimeout(function() {
         $(this).remove();
     });
 }, 2000);
+
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
