@@ -19,13 +19,13 @@
     <div class="form-group col-md-12 col-sm-4 col-xs-12 col-md-offset-4">
         <input type="text" style="border: 1px solid #8585ad" class="col-md-4 col-xs-12" class="form-control" ng-model="keyword" placeholder="   Filter you keywords " autofocus required>
     </div>
-    <div class="col-md-2 col-sm-6 col-xs-6 keyword-box" ng-repeat="key in keywordList | filter: keyword ">
+    <div ng-mouseenter="showDeleteButton = true" ng-mouseleave="showDeleteButton = false" class="col-md-2 col-sm-6 col-xs-6 keyword-box" ng-repeat="key in keywordList | filter: keyword as filtered">
         <h4 ng-click="showImages(key)" class=" heading1 keywords text-primary">{{key.keyword}}</h4>
         <p class="text-danger times heading2" data-toggle="tooltip" data-placement="top" title="Delete" 
-        ng-click="deleteKeyword(key)">&times</p>
+        ng-click="deleteKeyword(key)" ng-show="showDeleteButton">&times</p>
     </div>
 </div>
-<h4 class="text-center text-danger heading1" style="margin-top: 3%">Total Results : {{count}}</h4>
+<h4 class="text-center text-danger heading1" style="margin-top: 3%">Total Results : {{filtered.length}} out of {{count}}</h4>
 <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 form-group">
     <hr class="divider"></hr>
 </div>
